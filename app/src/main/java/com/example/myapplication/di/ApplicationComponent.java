@@ -19,6 +19,4 @@ public interface ApplicationComponent {
     void inject (BillDetailsPresenter presenter);
     void inject (BillPaidPresenter presenter);
     void inject (BillUnPaidPresenter presenter);
-
-
 }
