@@ -12,11 +12,15 @@ import com.example.myapplication.ui.activity.mainActivity.MainActivity;
 import com.example.myapplication.ui.base.BaseActivity;
 
 public class SplashScreenActivity extends BaseActivity implements SplashScreenContract.View {
+    private SplashScreenContract.Presenter mPresenter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        mPresenter = new SplashScreenPresenter(this);
+        mPresenter.startActivityTimeOut();
+
     }
 
     @Override

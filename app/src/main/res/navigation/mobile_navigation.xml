@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_all_bills">
+
+    <fragment
+        android:id="@+id/nav_all_bills"
+        android:name="com.example.myapplication.ui.fragments.allBills.AllBillsFragment"
+        android:label="@string/menu_all_bills"
+        tools:layout="@layout/fragment_all_bills">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_add_bills"
+        android:name="com.example.myapplication.ui.fragments.addBill.AddBillFragment"
+        android:label="@string/menu_add_bill"
+        tools:layout="@layout/fragment_add_bill">
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_bill_details"
+        android:name="com.example.myapplication.ui.fragments.billDetails.BillDetailsFragment"
+        android:label="@string/menu_bill_details"
+        tools:layout="@layout/fragment_bill_details" />
+
+    <fragment
+        android:id="@+id/nav_bill_paid"
+        android:name="com.example.myapplication.ui.fragments.billPaid.BillPaidFragment"
+        android:label="@string/menu_bill_paid"
+        tools:layout="@layout/fragment_bill_paid" />
+
+    <fragment
+        android:id="@+id/nav_bill_unpaid"
+        android:name="com.example.myapplication.ui.fragments.billUnPaid.BillUnPaidFragment"
+        android:label="@string/menu_bill_unpaid"
+        tools:layout="@layout/fragment_bill_unpaid" />
+</navigation>

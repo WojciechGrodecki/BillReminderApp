@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/add_bill"
+            android:title="@string/menu_add_bill" />
+        <item
+            android:id="@+id/all_bill"
+            android:title="@string/menu_all_bills" />
+        <item
+            android:id="@+id/bill_details"
+            android:title="@string/menu_bill_details" />
+        <item
+            android:id="@+id/bill_paid"
+            android:title="@string/menu_bill_paid" />
+        <item
+            android:id="@+id/bill_unpaid"
+            android:title="@string/menu_bill_unpaid" />
+    </group>
+</menu>

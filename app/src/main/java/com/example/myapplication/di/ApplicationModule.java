@@ -5,6 +5,8 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import com.example.myapplication.BillReminderApplication;
+import com.example.myapplication.db.DatabaseHelper;
+import com.example.myapplication.db.impl.DatabaseHelperImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,5 +22,10 @@ public class ApplicationModule {
     @Provides
     Context providesContext() {
         return mApplication.getBaseContext();
+    }
+
+    @Provides
+    DatabaseHelper providesDatabaseHelper(@NonNull Context context) {
+        return DatabaseHelperImpl.getInstance(context);
     }
 }

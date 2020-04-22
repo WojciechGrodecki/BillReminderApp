@@ -11,9 +11,12 @@
         android:name=".BillReminderApplication"
         android:theme="@style/AppTheme">
         
-        <activity android:name=""
+        <activity android:name=".ui.activity.splash.SplashScreenActivity">
 
-        <activity android:name=".ui.activity.mainActivity.MainActivity">
+        </activity>
+
+        <activity android:name=".ui.activity.mainActivity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -13,4 +13,6 @@ public class BillPaidPresenter implements BillPaidContract.Presenter {
         mView = view;
         BillReminderApplication.getApplicationComponent().inject(this);
     }
+
+
 }
