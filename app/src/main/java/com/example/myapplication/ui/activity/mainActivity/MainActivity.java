@@ -15,7 +15,6 @@ import com.example.myapplication.R;
 import com.example.myapplication.ui.base.BaseActivity;
 import com.example.myapplication.ui.fragments.addBill.AddBillFragment;
 import com.example.myapplication.ui.fragments.allBills.AllBillsFragment;
-import com.example.myapplication.ui.fragments.billDetails.BillDetailsFragment;
 import com.example.myapplication.ui.fragments.billPaid.BillPaidFragment;
 import com.example.myapplication.ui.fragments.billUnPaid.BillUnPaidFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -24,6 +23,10 @@ public class MainActivity extends BaseActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout mDrawerLayout;
     private Button mButton;
+    private Button mButtonAllBillFragment;
+    private Button mButtonAddBillFragment;
+    private Button mButtonBillUnpaidFragment;
+    private Button mButtonBillPaid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +34,10 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //initButtons();
 
-        mButton = findViewById(R.id.button);
-        mButton.setOnClickListener(v-> startAdd());
+        mButton = findViewById(R.id.addBillButton);
+        mButton.setOnClickListener(v -> startAddBillFragment());
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -43,6 +47,16 @@ public class MainActivity extends BaseActivity {
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this::onNavigationItemSelected);
     }
+
+
+    private void startAddBillFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.flContainer, new AddBillFragment())
+                .addToBackStack(null)
+                .commit();
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -61,8 +75,6 @@ public class MainActivity extends BaseActivity {
             setFragment(new AllBillsFragment());
         } else if (id == R.id.add_bill) {
             setFragment(new AddBillFragment());
-        } else if (id == R.id.bill_details) {
-            setFragment(new BillDetailsFragment());
         } else if (id == R.id.bill_paid) {
             setFragment(new BillPaidFragment());
         } else if (id == R.id.bill_unpaid) {
@@ -80,12 +92,6 @@ public class MainActivity extends BaseActivity {
                 .commit();
     }
 
-    private void startAdd(){
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.flContainer, new AddBillFragment())
-                .addToBackStack(null)
-                .commit();
-    }
+
 
 }

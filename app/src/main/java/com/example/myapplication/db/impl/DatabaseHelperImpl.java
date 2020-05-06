@@ -60,4 +60,9 @@ public class DatabaseHelperImpl implements DatabaseHelper {
     public boolean isEmpty() {
         return mDataStore.count(Bill.class).get().value().equals(0);
     }
+
+    @Override
+    public void deleteBill(Bill bill) {
+        mDataStore.delete(bill);
+    }
 }

@@ -11,9 +11,6 @@
             android:id="@+id/all_bill"
             android:title="@string/menu_all_bills" />
         <item
-            android:id="@+id/bill_details"
-            android:title="@string/menu_bill_details" />
-        <item
             android:id="@+id/bill_paid"
             android:title="@string/menu_bill_paid" />
         <item

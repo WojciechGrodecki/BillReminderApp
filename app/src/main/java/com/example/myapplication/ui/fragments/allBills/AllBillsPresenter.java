@@ -10,8 +10,10 @@ import com.example.myapplication.db.DatabaseHelper;
 import com.example.myapplication.db.model.Bill;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import javax.inject.Inject;
 
@@ -32,23 +34,7 @@ public class AllBillsPresenter implements AllBillsContract.Presenter {
     @Override
     public void loadBills() {
         Log.e("xd", "load");
-        if (databaseHelper.isEmpty()) {
-            Log.e("xd", "empty");
-            databaseHelper.insertBills(createRandomBills());
-        }
         mView.showBills(databaseHelper.getAllBills());
     }
 
-    @NonNull
-    private List<Bill> createRandomBills() {
-        List<Bill> bills = new ArrayList<>();
-        for (int i = 0; i < TASK_COUNT; ++i) {
-            Bill bill = new Bill();
-            bill.setBillName(String.format(Locale.getDefault(), "Example bill number : %d", i + 1));
-            bill.setStatus("Bill Unpaid");
-            bills.add(bill);
-        }
-
-        return bills;
-    }
 }

@@ -11,4 +11,5 @@ public abstract class AbstractBill {
     int id;
     String status;
     String billName;
+    int billPrice;
 }

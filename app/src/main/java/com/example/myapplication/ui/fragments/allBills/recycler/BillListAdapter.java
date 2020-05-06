@@ -1,10 +1,12 @@
 package com.example.myapplication.ui.fragments.allBills.recycler;
 
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,9 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.db.model.Bill;
+import com.example.myapplication.ui.fragments.allBills.AllBillsFragment;
 
 public class BillListAdapter extends ListAdapter<Bill, BillListAdapter.TaskItemViewHolder> {
-
+    private Context context;
 
     public interface OnBillChangeListener {
         void onBillUpdate(@NonNull Bill bill);
@@ -56,7 +59,7 @@ public class BillListAdapter extends ListAdapter<Bill, BillListAdapter.TaskItemV
         Bill bill = getItem(position);
         holder.mTxtvID.setText(String.valueOf(bill.getId()));
         holder.mTxtName.setText("Bill Name: " + bill.getBillName());
-        holder.mTxtvStatus.setText("Bill Status: " + bill.getStatus());
+        holder.linearLayout.setOnClickListener(v -> AllBillsFragment.setBillDetails(bill.getBillName(), bill.getStatus(), bill.getBillPrice()));
     }
 
     @Override
@@ -66,16 +69,17 @@ public class BillListAdapter extends ListAdapter<Bill, BillListAdapter.TaskItemV
 
 
     class TaskItemViewHolder extends RecyclerView.ViewHolder {
+        private LinearLayout linearLayout;
         private TextView mTxtvID;
         private TextView mTxtName;
-        private TextView mTxtvStatus;
 
 
         TaskItemViewHolder(View itemView) {
             super(itemView);
+            linearLayout = itemView.findViewById(R.id.BillList);
             mTxtvID = itemView.findViewById(R.id.billID);
             mTxtName = itemView.findViewById(R.id.billName);
-            mTxtvStatus = itemView.findViewById(R.id.billStatus);
+
         }
     }
 }

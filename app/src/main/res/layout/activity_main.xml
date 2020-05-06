@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@drawable/background"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
@@ -28,9 +28,11 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/addBillButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/text_view_design"
+                    android:textColor="@android:color/black"
                     android:text="Add Bill"
                     android:textSize="12sp" />
 
@@ -53,8 +55,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
-
-
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

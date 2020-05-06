@@ -1,10 +1,13 @@
 package com.example.myapplication.ui.fragments.allBills;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +24,9 @@ public class AllBillsFragment extends BaseFragment
         implements AllBillsContract.View {
     BillListAdapter mAdapter;
     RecyclerView mRecycler;
+    public static TextView mTxtvBillName;
+    public static TextView mTxtvBillStatus;
+    public static TextView mTxtvBillPrice;
 
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private AllBillsContract.Presenter mPresenter;
@@ -39,6 +45,7 @@ public class AllBillsFragment extends BaseFragment
         mAdapter = new BillListAdapter(getResources());
         mPresenter = new AllBillsPresenter(this);
         mPresenter.loadBills();
+        initializeTextView();
 
         setupRecycler();
     }
@@ -49,8 +56,22 @@ public class AllBillsFragment extends BaseFragment
 
     }
 
+     void initializeTextView() {
+        mTxtvBillName = getView().findViewById(R.id.billNameDetails);
+        mTxtvBillStatus = getView().findViewById(R.id.BillStatusDetails);
+        mTxtvBillPrice = getView().findViewById(R.id.BillPriceDetails);
+    }
+
+    @SuppressLint("SetTextI18n")
+    public static void setBillDetails(String BillName, String BillStatus, int BillPrize) {
+        mTxtvBillName.setText(BillName);
+        mTxtvBillStatus.setText(BillStatus);
+        mTxtvBillPrice.setText(Integer.toString(BillPrize) + "zł");
+
+    }
+
     @Override
-    public void showBills(List<Bill> bill) {
+    public void showBills(@NonNull List<Bill> bill) {
         mAdapter.submitList(bill);
     }
 }

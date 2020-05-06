@@ -7,27 +7,28 @@
         <shape>
             <!-- set the shadow color here -->
             <stroke
-                android:width="3dp"
-                android:color="#7000" />
+                android:width="20dp"
+                android:color="#FFF" />
 
             <!-- setting the thickness of shadow (positive value will give shadow on that side) -->
 
             <padding
-                android:bottom="2dp"
-                android:left="2dp"
-                android:right="2dp"
-                android:top="2dp" />
+                android:bottom="8dp"
+                android:left="8dp"
+                android:right="8dp"
+                android:top="8dp" />
 
-            <corners android:radius="0.5dp" />
+            <corners android:radius="20dp" />
         </shape>
     </item>
 
     <!--< Background -->
 
+
     <item>
         <shape>
-            <solid android:color="#ffffe6" />
-            <corners android:radius="2dp" />
+            <solid android:color="#BA19FF" />
+            <corners android:radius="5dp" />
         </shape>
     </item>
 </layer-list>

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface DatabaseHelper {
 
-     void insertBills (@NonNull List<Bill> tasks);
+     void insertBills (@NonNull List<Bill> bill);
 
      @NonNull
      List<Bill> getAllBills();
@@ -17,4 +17,6 @@ public interface DatabaseHelper {
      void updateBill(@NonNull Bill bill);
 
      boolean isEmpty();
+
+     void deleteBill(Bill bill);
 }
