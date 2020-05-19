@@ -4,7 +4,7 @@ public interface MainActivityContract {
 
 
     interface Presenter {
-
+        void unPaidBillListener();
     }
 
     interface View {

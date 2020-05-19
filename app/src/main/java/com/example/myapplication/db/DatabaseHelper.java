@@ -6,6 +6,8 @@ import com.example.myapplication.db.model.Bill;
 
 import java.util.List;
 
+import io.requery.query.Tuple;
+
 
 public interface DatabaseHelper {
 
@@ -13,6 +15,12 @@ public interface DatabaseHelper {
 
      @NonNull
      List<Bill> getAllBills();
+
+     @NonNull
+     List<Tuple> getAllBillsDate();
+
+     @NonNull
+     List<Tuple> getAllBillsStatus();
 
      void updateBill(@NonNull Bill bill);
 

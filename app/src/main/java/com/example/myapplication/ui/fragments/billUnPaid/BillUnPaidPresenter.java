@@ -8,6 +8,8 @@ import com.example.myapplication.BillReminderApplication;
 import com.example.myapplication.db.DatabaseHelper;
 import com.example.myapplication.ui.fragments.allBills.AllBillsContract;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 public class BillUnPaidPresenter implements BillUnPaidContract.Presenter {

@@ -12,6 +12,7 @@ import java.util.List;
 
 import io.requery.Persistable;
 import io.requery.android.sqlite.DatabaseSource;
+import io.requery.query.Tuple;
 import io.requery.sql.Configuration;
 import io.requery.sql.EntityDataStore;
 
@@ -49,6 +50,18 @@ public class DatabaseHelperImpl implements DatabaseHelper {
     @Override
     public List<Bill> getAllBills() {
         return mDataStore.select(Bill.class).get().toList();
+    }
+
+    @NonNull
+    @Override
+    public List<Tuple> getAllBillsDate() {
+        return mDataStore.select(Bill.BILL_DATE).get().toList();
+    }
+
+    @NonNull
+    @Override
+    public List<Tuple> getAllBillsStatus() {
+        return mDataStore.select(Bill.STATUS).get().toList();
     }
 
     @Override
