@@ -17,6 +17,9 @@
         android:name="com.example.myapplication.ui.fragments.addBill.AddBillFragment"
         android:label="@string/menu_add_bill"
         tools:layout="@layout/fragment_add_bill">
+        <action
+            android:id="@+id/action_nav_add_bills_to_nav_all_bills"
+            app:destination="@id/nav_all_bills" />
     </fragment>
 
     <fragment

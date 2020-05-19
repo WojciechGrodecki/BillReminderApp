@@ -30,18 +30,20 @@ public class AddBillPresenter implements AddBillContract.Presenter {
     }
 
     @Override
-    public void addNewBill(@NonNull String BillName, @NonNull String BillStatus, int BillPrize) {
-        databaseHelper.insertBills(createBills(BillName,BillStatus,BillPrize));
+    public void addNewBill(@NonNull String BillName, @NonNull String BillStatus, int BillPrize, String BillDate, String BillCycle) {
+        databaseHelper.insertBills(createBills(BillName,BillStatus,BillPrize,BillDate,BillCycle));
         Log.e("xd",BillName + "  " +BillStatus + " " + BillPrize);
     }
 
     @NonNull
-    private List<Bill> createBills(String BillName, String BillStatus, int BillPrize) {
+    private List<Bill> createBills(String BillName, String BillStatus, int BillPrize, String BillDate, String Billcycle) {
         List<Bill> bills = new ArrayList<>();
             Bill bill = new Bill();
             bill.setBillName(BillName);
             bill.setBillPrice(BillPrize);
             bill.setStatus(BillStatus);
+            bill.setBillDate(BillDate);
+            bill.setRepeat(Billcycle);
             bills.add(bill);
         return bills;
     }

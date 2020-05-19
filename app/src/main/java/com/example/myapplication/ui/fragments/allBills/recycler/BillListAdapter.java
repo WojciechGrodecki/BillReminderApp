@@ -59,7 +59,7 @@ public class BillListAdapter extends ListAdapter<Bill, BillListAdapter.TaskItemV
         Bill bill = getItem(position);
         holder.mTxtvID.setText(String.valueOf(bill.getId()));
         holder.mTxtName.setText("Bill Name: " + bill.getBillName());
-        holder.linearLayout.setOnClickListener(v -> AllBillsFragment.setBillDetails(bill.getBillName(), bill.getStatus(), bill.getBillPrice()));
+        holder.linearLayout.setOnClickListener(v -> AllBillsFragment.setBillDetails(bill.getBillName(), bill.getStatus(), bill.getBillPrice(),bill.getBillDate(),bill.getRepeat()));
     }
 
     @Override

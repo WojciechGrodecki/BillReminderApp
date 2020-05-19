@@ -27,6 +27,8 @@ public class AllBillsFragment extends BaseFragment
     public static TextView mTxtvBillName;
     public static TextView mTxtvBillStatus;
     public static TextView mTxtvBillPrice;
+    public static TextView mTxtvBillDate;
+    public static TextView mTxTvBillCycle;
 
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private AllBillsContract.Presenter mPresenter;
@@ -55,17 +57,32 @@ public class AllBillsFragment extends BaseFragment
         Log.e("xd", "setupRecycler");
     }
 
-     void initializeTextView() {
+     private void initializeTextView() {
         mTxtvBillName = getView().findViewById(R.id.billNameDetails);
-        mTxtvBillStatus = getView().findViewById(R.id.BillStatusDetails);
+        mTxtvBillStatus = getView().findViewById(R.id.billStatusDetails);
         mTxtvBillPrice = getView().findViewById(R.id.BillPriceDetails);
+        mTxtvBillDate = getView().findViewById(R.id.billDate);
+        mTxTvBillCycle = getView().findViewById(R.id.BillCycleDetails);
     }
 
     @SuppressLint("SetTextI18n")
-    public static void setBillDetails(String BillName, String BillStatus, int BillPrize) {
+    public static void setBillDetails(String BillName, String BillStatus, int billPrize, String billDate, String billCycle) {
         mTxtvBillName.setText("Name: " + BillName);
         mTxtvBillStatus.setText("Status: " + BillStatus);
-        mTxtvBillPrice.setText("Value: " + Integer.toString(BillPrize) + "zł");
+        mTxtvBillPrice.setText("Value: " + Integer.toString(billPrize) + "zł");
+        mTxtvBillDate.setText("Date: " + billDate);
+        switch (billCycle) {
+            case "2592000000":
+                mTxTvBillCycle.setText("Cycle: Month");
+                break;
+            case "7776000000":
+                mTxTvBillCycle.setText("Cycle: Quater");
+                break;
+            case "31104000000":
+                mTxTvBillCycle.setText("Cycle: Year");
+                break;
+        }
+
     }
 
     @Override

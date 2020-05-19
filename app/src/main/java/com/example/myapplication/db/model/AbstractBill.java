@@ -1,8 +1,5 @@
 package com.example.myapplication.db.model;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-
 import io.requery.Entity;
 import io.requery.Generated;
 import io.requery.Key;
@@ -15,8 +12,8 @@ public abstract class AbstractBill {
     String status;
     String billName;
     int billPrice;
-    //String date;
-   // String repeat;
+    String billDate;
+    String repeat;
     //String active;
 
 }

@@ -24,18 +24,30 @@ import com.example.myapplication.R;
 import com.example.myapplication.ui.base.BaseFragment;
 import com.example.myapplication.ui.fragments.allBills.AllBillsFragment;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class AddBillFragment extends BaseFragment implements AddBillContract.View {
-    private String[] cycle = {"Week", "Month", "Quater", "Year"};
+    final DateFormat dateFormat_year = new SimpleDateFormat("yyyy");
+    final DateFormat dateFormat_month = new SimpleDateFormat("MM");
+    final DateFormat dateFormat_day = new SimpleDateFormat("dd");
+    private String[] cycle = {"No", "Week", "Month", "Quater", "Year"};
     private EditText mETBillName;
     private EditText mETbillPrize;
+    private String mDate;
     private Button mButton;
     private Switch mSwitch;
     private Spinner mSpinner;
     private CheckBox mCheckBox;
     private CalendarView mCalendar;
     public String mBillStatus;
+    private long mCycle;
+    private static final long milWeek = 604800000L;
+    private static final long milMonth = 2592000000L;
+    private static final long milQuater = 3*milMonth;
+    private static final long milYear = 12*milMonth;
 
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private AddBillContract.Presenter mPresenter;
@@ -55,18 +67,42 @@ public class AddBillFragment extends BaseFragment implements AddBillContract.Vie
         mPresenter = new AddBillPresenter(this);
         initializeView();
         mSpinner.setVisibility(View.INVISIBLE);
-        mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mSpinner.setVisibility(View.VISIBLE);
-                } else {
-                    mSpinner.setVisibility(View.INVISIBLE);
-                }
+        chceckIsCheckboxActive();
+        setSpinnerSettings();
+        setButtonAction();
+        getDateFromCallendar();
+    }
 
+    private void setButtonAction() {
+        mButton.setOnClickListener(v -> {
+            if (mSwitch.isChecked()) {
+                mBillStatus = "Bill Paid";
+                Toast.makeText(getActivity(), "Bill Status : Paid",
+                        Toast.LENGTH_LONG).show();
+                addBill(mETBillName.getText().toString(), mBillStatus, Integer.parseInt(mETbillPrize.getText().toString()), mDate, String.valueOf(mCycle));
+                startAllFragmentAfrerAdd();
+            } else {
+                mBillStatus = "Bill Unpaid";
+                Toast.makeText(getActivity(), "Bill Status : UnPaid",
+                        Toast.LENGTH_LONG).show();
+                addBill(mETBillName.getText().toString(), mBillStatus, Integer.parseInt(mETbillPrize.getText().toString()),mDate, String.valueOf(mCycle));
+                startAllFragmentAfrerAdd();
+            }
+        });
+    }
+
+    private void getDateFromCallendar() {
+        mCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+
+                mDate = String.valueOf(dayOfMonth + " / " + month + " / " + year);
             }
         });
 
+    }
+
+    private void setSpinnerSettings() {
         ArrayAdapter<String> mArrayAdapter = new ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, cycle);
         mArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(mArrayAdapter);
@@ -74,13 +110,19 @@ public class AddBillFragment extends BaseFragment implements AddBillContract.Vie
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                if (parent.getItemAtPosition(position) == "Week") {
+                if (parent.getItemAtPosition(position) == "No") {
+                    mCycle = 0;
+                } else if (parent.getItemAtPosition(position) == "Week") {
+                    mCycle = milWeek;
                     Log.e("xd", "Select WeekItem");
                 } else if (parent.getItemAtPosition(position) == "Month") {
+                    mCycle = milMonth;
                     Log.e("xd", "Select MonthItem");
                 } else if (parent.getItemAtPosition(position) == "Quater") {
+                    mCycle = milQuater;
                     Log.e("xd", "Select QuaterItem");
                 } else if (parent.getItemAtPosition(position) == "Year") {
+                    mCycle = milYear;
                     Log.e("xd", "Select YearItem");
                 }
 
@@ -92,39 +134,31 @@ public class AddBillFragment extends BaseFragment implements AddBillContract.Vie
                 // TODO Auto-generated method stub
             }
         });
-
-
-        mButton.setOnClickListener(v -> {
-            if (mSwitch.isChecked()) {
-                mBillStatus = "Bill Paid";
-                Toast.makeText(getActivity(), "Bill Status : Paid",
-                        Toast.LENGTH_LONG).show();
-                addBill(mETBillName.getText().toString(), mBillStatus, Integer.parseInt(mETbillPrize.getText().toString()));
-                startAllFragmentAfrerAdd();
-            } else {
-                mBillStatus = "Bill Unpaid";
-                Toast.makeText(getActivity(), "Bill Status : UnPaid",
-                        Toast.LENGTH_LONG).show();
-                addBill(mETBillName.getText().toString(), mBillStatus, Integer.parseInt(mETbillPrize.getText().toString()));
-                startAllFragmentAfrerAdd();
-            }
-        });
     }
 
     private void chceckIsCheckboxActive() {
-
+        mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mSpinner.setVisibility(View.VISIBLE);
+                } else {
+                    mSpinner.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
     }
 
     private void startAllFragmentAfrerAdd() {
         requireFragmentManager()
                 .beginTransaction()
-                .replace(R.id.flContainer, new AllBillsFragment())
+                .replace(R.id.nav_host_fragment, new AllBillsFragment())
                 .addToBackStack(null)
                 .commit();
     }
 
     private void initializeView() {
-        mETBillName = Objects.requireNonNull(getView()).findViewById(R.id.addBillName);
+        mETBillName = getView().findViewById(R.id.addBillName);
         mETbillPrize = getView().findViewById(R.id.addBilPrize);
         mButton = getView().findViewById(R.id.saveButton);
         mSwitch = getView().findViewById(R.id.switchStatus);
@@ -133,9 +167,9 @@ public class AddBillFragment extends BaseFragment implements AddBillContract.Vie
         mCalendar = getView().findViewById(R.id.calendarView);
     }
 
-    private void addBill(String billName, String billStatus, int BillPrize) {
-        mPresenter.addNewBill(billName, billStatus, BillPrize);
+    private void addBill(String billName, String billStatus, int billPrize, String billDate, String cycle) {
+        mPresenter.addNewBill(billName, billStatus, billPrize, billDate, cycle);
+        Log.e("xd", "cycle: " + cycle);
     }
-
 
 }

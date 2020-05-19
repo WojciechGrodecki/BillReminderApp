@@ -103,18 +103,41 @@
             android:layout_height="1dp"
             android:background="@android:color/white" />
 
+
+
         <ScrollView
+            android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:orientation="vertical">
 
-            <CalendarView
-                android:id="@+id/calendarView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+            <RelativeLayout
+                android:id="@+id/lay_fragment"
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_gravity="top|center"
+                android:layout_marginBottom="0dip"
+                android:layout_marginTop="0dip"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+                <CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbarAlwaysDrawVerticalTrack="false"
+                    android:layout_marginBottom="25dip"
+                    android:isScrollContainer="true"
+                    android:scrollbarAlwaysDrawHorizontalTrack="true"
+                    android:orientation="horizontal"
+                    android:textSize="12sp" />
+            </RelativeLayout>
         </ScrollView>
+
+
+
+
 
         <View
             android:layout_width="match_parent"
