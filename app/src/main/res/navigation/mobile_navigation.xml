@@ -10,7 +10,6 @@
         android:name="com.example.myapplication.ui.fragments.allBills.AllBillsFragment"
         android:label="@string/menu_all_bills"
         tools:layout="@layout/fragment_all_bills">
-
     </fragment>
 
     <fragment
@@ -19,12 +18,6 @@
         android:label="@string/menu_add_bill"
         tools:layout="@layout/fragment_add_bill">
     </fragment>
-
-    <fragment
-        android:id="@+id/nav_bill_details"
-        android:name="com.example.myapplication.ui.fragments.billDetails.BillDetailsFragment"
-        android:label="@string/menu_bill_details"
-        tools:layout="@layout/fragment_bill_details" />
 
     <fragment
         android:id="@+id/nav_bill_paid"

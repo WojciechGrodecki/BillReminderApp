@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_all_bills"
+        android:icon="@drawable/bill"
+        android:title="All Bills" />
+
+    <item
+        android:id="@+id/nav_bill_paid"
+        android:icon="@drawable/smile"
+        android:title="Bills Paid" />
+
+    <item
+        android:id="@+id/nav_bill_unpaid"
+        android:icon="@drawable/sad"
+        android:title="Bills Unpaid" />
+
+    <item
+        android:id="@+id/nav_add_bills"
+        android:icon="@drawable/add"
+        android:title="Add Bill" />
+
+</menu>

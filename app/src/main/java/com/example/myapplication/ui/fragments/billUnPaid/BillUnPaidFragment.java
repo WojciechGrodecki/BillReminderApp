@@ -24,10 +24,13 @@ public class BillUnPaidFragment extends BaseFragment implements BillUnPaidContra
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private BillUnPaidContract.Presenter mPresenter;
 
+    @Nullable
     @Override
-    public @Nullable
-    View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_bill_unpaid, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View rootView=inflater.inflate(R.layout.fragment_bill_unpaid,container,false);
+
+        return rootView;
     }
 
     @Override

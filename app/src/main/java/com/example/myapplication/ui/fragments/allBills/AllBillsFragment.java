@@ -31,10 +31,11 @@ public class AllBillsFragment extends BaseFragment
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private AllBillsContract.Presenter mPresenter;
 
+    @Nullable
     @Override
-    public @Nullable
-    View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_all_bills, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView=inflater.inflate(R.layout.fragment_all_bills,container,false);
+        return rootView;
     }
 
     @Override
@@ -46,14 +47,12 @@ public class AllBillsFragment extends BaseFragment
         mPresenter = new AllBillsPresenter(this);
         mPresenter.loadBills();
         initializeTextView();
-
         setupRecycler();
     }
 
     private void setupRecycler() {
         mRecycler.setAdapter(mAdapter);
         Log.e("xd", "setupRecycler");
-
     }
 
      void initializeTextView() {
@@ -64,10 +63,9 @@ public class AllBillsFragment extends BaseFragment
 
     @SuppressLint("SetTextI18n")
     public static void setBillDetails(String BillName, String BillStatus, int BillPrize) {
-        mTxtvBillName.setText(BillName);
-        mTxtvBillStatus.setText(BillStatus);
-        mTxtvBillPrice.setText(Integer.toString(BillPrize) + "zł");
-
+        mTxtvBillName.setText("Name: " + BillName);
+        mTxtvBillStatus.setText("Status: " + BillStatus);
+        mTxtvBillPrice.setText("Value: " + Integer.toString(BillPrize) + "zł");
     }
 
     @Override

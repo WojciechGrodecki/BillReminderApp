@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="#ccccff"
     android:orientation="vertical">
-
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="370dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="202dp"
-        android:layout_marginBottom="63dp"
+        android:layout_margin="12dp"
+        android:layout_weight="8"
         android:background="@drawable/border_shadow"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/saveButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/addBillName"
@@ -31,13 +26,11 @@
             android:gravity="center"
             android:hint="Bill Name"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="215dp"
-            tools:layout_editor_absoluteY="401dp" />
+            android:textSize="18sp" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:background="@android:color/white" />
 
         <EditText
@@ -50,22 +43,18 @@
             android:hint="Bill price"
             android:inputType="number"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
-            tools:layout_editor_absoluteX="383dp"
-            tools:layout_editor_absoluteY="713dp" />
+            android:textSize="18sp" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:background="@android:color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="295dp"
-            tools:layout_editor_absoluteY="787dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
@@ -108,13 +97,59 @@
                 android:textSize="24sp" />
 
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
+
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+        </ScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:text="Is recurrent bill?" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white" />
+
+        <Spinner
+            android:id="@+id/static_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5" />
+
     </LinearLayout>
+
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="227dp"
-        android:layout_height="68dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="61dp"
+        android:layout_weight="1"
         android:background="@drawable/buttonshape"
         android:shadowColor="#A8A8A8"
         android:shadowDx="0"
@@ -122,11 +157,6 @@
         android:shadowRadius="5"
         android:text="ADD BILL"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        android:textSize="30sp" />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

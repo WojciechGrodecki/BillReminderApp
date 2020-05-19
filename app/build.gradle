@@ -63,4 +63,8 @@ dependencies {
 
     //Lottie
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    //BottomNavigation
+    implementation 'com.aurelhubert:ahbottomnavigation:2.1.0'
+
 }

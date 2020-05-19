@@ -13,9 +13,12 @@ import com.example.myapplication.ui.base.BaseFragment;
 
 public class BillPaidFragment extends BaseFragment {
 
+    @Nullable
     @Override
-    public @Nullable
-    View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_bill_paid, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View rootView=inflater.inflate(R.layout.fragment_bill_paid,container,false);
+
+        return rootView;
     }
 }
