@@ -9,8 +9,6 @@ import androidx.annotation.RequiresApi;
 import com.example.myapplication.BillReminderApplication;
 import com.example.myapplication.db.DatabaseHelper;
 import com.example.myapplication.db.model.Bill;
-import com.example.myapplication.ui.fragments.addBill.AddBillContract;
-import com.example.myapplication.ui.fragments.addBill.AddBillPresenter;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -108,18 +106,18 @@ public class MainActivityPresenter implements MainActivityContract.Presenter {
                 }
             }
         }
-        if(cycleLong > 1000){
-            long currentDateLong = GregorianCalendar.getInstance().getTimeInMillis();
+        long currentDateLong = GregorianCalendar.getInstance().getTimeInMillis();
+        if (cycleLong > 1000 && date == currentDateLong) {
             long exdate = currentDateLong + cycleLong;
             String dateEx = String.valueOf(exdate);
             String BillName = "bill name";
             String BillStatus = "bill status";
             int BillPrize = 123;
-            databaseHelper.insertBills(createBills(BillName,BillStatus,BillPrize,dateEx,String.valueOf(cycleLong),exdate));
+            databaseHelper.insertBills(createBills(BillName, BillStatus, BillPrize, dateEx, String.valueOf(cycleLong), exdate));
         }
     }
-    private List<Bill> createBills(String BillName, String BillStatus, int BillPrize, String BillDate, String Billcycle, Long dateTime)
-    {
+
+    private List<Bill> createBills(String BillName, String BillStatus, int BillPrize, String BillDate, String Billcycle, Long dateTime) {
         List<Bill> bills = new ArrayList<>();
         Bill bill = new Bill();
         bill.setBillName(BillName);
