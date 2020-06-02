@@ -71,14 +71,11 @@ public class MainActivityPresenter implements MainActivityContract.Presenter {
             }
         }
         long resultDate = currentDateLong - date;
+        Log.e("xdDataMocno", "Roznica " + resultDate);
 
-        if (date > currentDateLong) {
-            Log.e("xdDataMocno", "większe");
-        } else {
-            Log.e("xdDataMocno", "mniejsze");
-        }
-
-        if (date != currentDateLong && resultDate < 3483802645980L) {
+        // Wywołaj notyfikacje jesli aktualna data - data jakiegos rachunku to mniej niz 3 dni
+        // Obliczone za pomoca daty 5 czerwca odjac aktualna (roznica bedzie zawsze stala)
+        if (resultDate != currentDateLong && resultDate < 1591125908808L - 1591125889685L) {
             Log.e("xdDataMocno", "Co wywołuje? " + resultDate);
             mView.showNotify();
         }

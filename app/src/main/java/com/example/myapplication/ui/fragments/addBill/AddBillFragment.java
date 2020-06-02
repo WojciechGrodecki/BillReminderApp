@@ -98,7 +98,8 @@ public class AddBillFragment extends BaseFragment implements AddBillContract.Vie
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 month = month+1;
                 mDate = String.valueOf(dayOfMonth + "-" + month + "-" + year);
-                mDateTime = new Date(dayOfMonth,month,year).getTime();
+                mDateTime = new Date().getTime();
+                Log.e("xd", "add Data" + mDateTime);
             }
         });
 
