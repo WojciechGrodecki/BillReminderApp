@@ -25,6 +25,10 @@ public interface DatabaseHelper {
      @NonNull
      List<Tuple> getAllBillsStatus();
 
+     @NonNull
+     List<Tuple> getAllBillsCycleAndDate();
+
+
      void updateBill(@NonNull Bill bill);
 
      boolean isEmpty();

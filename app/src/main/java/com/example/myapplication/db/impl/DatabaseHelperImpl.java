@@ -70,6 +70,12 @@ public class DatabaseHelperImpl implements DatabaseHelper {
         return mDataStore.select(Bill.STATUS).get().toList();
     }
 
+    @NonNull
+    @Override
+    public List<Tuple> getAllBillsCycleAndDate() {
+        return mDataStore.select(Bill.REPEAT).get().toList();
+    }
+
     @Override
     public void updateBill(@NonNull Bill bill) {
         mDataStore.update(bill);

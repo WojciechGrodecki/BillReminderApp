@@ -8,15 +8,22 @@ import androidx.annotation.RequiresApi;
 
 import com.example.myapplication.BillReminderApplication;
 import com.example.myapplication.db.DatabaseHelper;
+import com.example.myapplication.db.model.Bill;
+import com.example.myapplication.ui.fragments.addBill.AddBillContract;
+import com.example.myapplication.ui.fragments.addBill.AddBillPresenter;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.inject.Inject;
 
 public class MainActivityPresenter implements MainActivityContract.Presenter {
     private String callendarDate;
     private String callendarDateTime;
+    private String mCycle;
     private long date;
+    private long cycleLong;
     @Inject
     DatabaseHelper databaseHelper;
 
@@ -31,7 +38,6 @@ public class MainActivityPresenter implements MainActivityContract.Presenter {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void unPaidBillListener() {
-        databaseHelper.getAllBillsDate();
         callendarDate = databaseHelper.getAllBillsDate().toString();
         callendarDateTime = databaseHelper.getAllBillsDateTime().toString();
 
@@ -79,5 +85,51 @@ public class MainActivityPresenter implements MainActivityContract.Presenter {
             Log.e("xdDataMocno", "Co wywołuje? " + resultDate);
             mView.showNotify();
         }
+        mCycle = databaseHelper.getAllBillsCycleAndDate().toString();
+        Log.e("xd", "cycle?" + mCycle);
+        separateCycle(mCycle);
     }
+
+    private void separateCycle(String cycle) {
+        String[] firstSplitString = cycle.split("\\[");
+        for (String splited : firstSplitString) {
+            String[] secondSplitString = splited.split("\\]");
+            for (String secondSplited : secondSplitString) {
+                String[] thirdSplitString = secondSplited.split(",");
+                for (String thirdSplited : thirdSplitString) {
+                    String[] quater = thirdSplited.split(" ");
+                    for (String cycleBill : quater) {
+                        try {
+                            cycleLong = Long.parseLong(cycleBill);
+                        } catch (NumberFormatException e) {
+                            Log.e("xd", "not a number");
+                        }
+                    }
+                }
+            }
+        }
+        if(cycleLong > 1000){
+            long currentDateLong = GregorianCalendar.getInstance().getTimeInMillis();
+            long exdate = currentDateLong + cycleLong;
+            String dateEx = String.valueOf(exdate);
+            String BillName = "bill name";
+            String BillStatus = "bill status";
+            int BillPrize = 123;
+            databaseHelper.insertBills(createBills(BillName,BillStatus,BillPrize,dateEx,String.valueOf(cycleLong),exdate));
+        }
+    }
+    private List<Bill> createBills(String BillName, String BillStatus, int BillPrize, String BillDate, String Billcycle, Long dateTime)
+    {
+        List<Bill> bills = new ArrayList<>();
+        Bill bill = new Bill();
+        bill.setBillName(BillName);
+        bill.setBillPrice(BillPrize);
+        bill.setStatus(BillStatus);
+        bill.setBillDate(BillDate);
+        bill.setRepeat(Billcycle);
+        bill.setDateTime(dateTime);
+        bills.add(bill);
+        return bills;
+    }
+
 }
