@@ -24,6 +24,8 @@ import com.example.myapplication.ui.fragments.allBills.AllBillsContract;
 import com.example.myapplication.ui.fragments.allBills.AllBillsPresenter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static android.app.Notification.EXTRA_NOTIFICATION_ID;
@@ -51,7 +53,14 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-
+        Timer timer = new Timer();
+        TimerTask t = new TimerTask() {
+            @Override
+            public void run() {
+                mPresenter.unPaidBillListener();
+            }
+        };
+        timer.schedule(t,01,1000*60*60*24);
 
     }
     private void getBillData(){
