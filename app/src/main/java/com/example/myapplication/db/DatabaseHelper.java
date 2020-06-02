@@ -13,6 +13,8 @@ public interface DatabaseHelper {
 
      void insertBills (@NonNull List<Bill> bill);
 
+     void deleteBill(@NonNull List<Bill> bill);
+
      @NonNull
      List<Bill> getAllBills();
 
@@ -33,5 +35,4 @@ public interface DatabaseHelper {
 
      boolean isEmpty();
 
-     void deleteBill(Bill bill);
 }

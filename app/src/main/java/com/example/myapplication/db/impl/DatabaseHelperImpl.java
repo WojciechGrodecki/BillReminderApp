@@ -46,6 +46,11 @@ public class DatabaseHelperImpl implements DatabaseHelper {
         mDataStore.insert(bill);
     }
 
+    @Override
+    public void deleteBill(@NonNull List<Bill> bill) {
+        mDataStore.delete(bill);
+    }
+
     @NonNull
     @Override
     public List<Bill> getAllBills() {
@@ -86,8 +91,4 @@ public class DatabaseHelperImpl implements DatabaseHelper {
         return mDataStore.count(Bill.class).get().value().equals(0);
     }
 
-    @Override
-    public void deleteBill(Bill bill) {
-        mDataStore.delete(bill);
-    }
 }

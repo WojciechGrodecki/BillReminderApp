@@ -84,6 +84,10 @@ public class AllBillsFragment extends BaseFragment
 
     }
 
+    public static void deleteBill(){
+
+    }
+
     @Override
     public void showBills(@NonNull List<Bill> bill) {
         mAdapter.submitList(bill);

@@ -15,11 +15,17 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.db.DatabaseHelper;
 import com.example.myapplication.db.model.Bill;
 import com.example.myapplication.ui.fragments.allBills.AllBillsFragment;
 
+import javax.inject.Inject;
+
 public class BillListAdapter extends ListAdapter<Bill, BillListAdapter.TaskItemViewHolder> {
     private Context context;
+    @Inject
+    DatabaseHelper databaseHelper;
+
 
     public interface OnBillChangeListener {
         void onBillUpdate(@NonNull Bill bill);
@@ -59,7 +65,10 @@ public class BillListAdapter extends ListAdapter<Bill, BillListAdapter.TaskItemV
         Bill bill = getItem(position);
         holder.mTxtvID.setText(String.valueOf(bill.getId()));
         holder.mTxtName.setText("Bill Name: " + bill.getBillName());
-        holder.linearLayout.setOnClickListener(v -> AllBillsFragment.setBillDetails(bill.getBillName(), bill.getStatus(), bill.getBillPrice(),bill.getBillDate(),bill.getRepeat()));
+        holder.linearLayout.setOnClickListener(v -> AllBillsFragment.setBillDetails(
+                bill.getBillName(), bill.getStatus(), bill.getBillPrice(),bill.getBillDate(),
+                bill.getRepeat()));
+
     }
 
     @Override
