@@ -30,13 +30,13 @@ public class AddBillPresenter implements AddBillContract.Presenter {
     }
 
     @Override
-    public void addNewBill(@NonNull String BillName, @NonNull String BillStatus, int BillPrize, String BillDate, String BillCycle) {
-        databaseHelper.insertBills(createBills(BillName,BillStatus,BillPrize,BillDate,BillCycle));
+    public void addNewBill(@NonNull String BillName, @NonNull String BillStatus, int BillPrize, String BillDate, String BillCycle, Long BillDateTime) {
+        databaseHelper.insertBills(createBills(BillName,BillStatus,BillPrize,BillDate,BillCycle,BillDateTime));
         Log.e("xd",BillName + "  " +BillStatus + " " + BillPrize);
     }
 
     @NonNull
-    private List<Bill> createBills(String BillName, String BillStatus, int BillPrize, String BillDate, String Billcycle) {
+    private List<Bill> createBills(String BillName, String BillStatus, int BillPrize, String BillDate, String Billcycle, Long dateTime) {
         List<Bill> bills = new ArrayList<>();
             Bill bill = new Bill();
             bill.setBillName(BillName);
@@ -44,6 +44,7 @@ public class AddBillPresenter implements AddBillContract.Presenter {
             bill.setStatus(BillStatus);
             bill.setBillDate(BillDate);
             bill.setRepeat(Billcycle);
+            bill.setDateTime(dateTime);
             bills.add(bill);
         return bills;
     }

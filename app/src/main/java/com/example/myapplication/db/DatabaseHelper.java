@@ -20,6 +20,9 @@ public interface DatabaseHelper {
      List<Tuple> getAllBillsDate();
 
      @NonNull
+     List<Tuple> getAllBillsDateTime();
+
+     @NonNull
      List<Tuple> getAllBillsStatus();
 
      void updateBill(@NonNull Bill bill);

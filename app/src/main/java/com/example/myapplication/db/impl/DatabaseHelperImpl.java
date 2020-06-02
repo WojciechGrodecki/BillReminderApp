@@ -60,6 +60,12 @@ public class DatabaseHelperImpl implements DatabaseHelper {
 
     @NonNull
     @Override
+    public List<Tuple> getAllBillsDateTime() {
+        return mDataStore.select(Bill.DATE_TIME).get().toList();
+    }
+
+    @NonNull
+    @Override
     public List<Tuple> getAllBillsStatus() {
         return mDataStore.select(Bill.STATUS).get().toList();
     }

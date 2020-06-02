@@ -37,6 +37,7 @@ public class AddBillFragment extends BaseFragment implements AddBillContract.Vie
     private EditText mETBillName;
     private EditText mETbillPrize;
     private String mDate;
+    private Long mDateTime;
     private Button mButton;
     private Switch mSwitch;
     private Spinner mSpinner;
@@ -79,13 +80,13 @@ public class AddBillFragment extends BaseFragment implements AddBillContract.Vie
                 mBillStatus = "Bill Paid";
                 Toast.makeText(getActivity(), "Bill Status : Paid",
                         Toast.LENGTH_LONG).show();
-                addBill(mETBillName.getText().toString(), mBillStatus, Integer.parseInt(mETbillPrize.getText().toString()), mDate, String.valueOf(mCycle));
+                addBill(mETBillName.getText().toString(), mBillStatus, Integer.parseInt(mETbillPrize.getText().toString()), mDate, String.valueOf(mCycle), mDateTime);
                 startAllFragmentAfrerAdd();
             } else {
                 mBillStatus = "Bill Unpaid";
                 Toast.makeText(getActivity(), "Bill Status : UnPaid",
                         Toast.LENGTH_LONG).show();
-                addBill(mETBillName.getText().toString(), mBillStatus, Integer.parseInt(mETbillPrize.getText().toString()),mDate, String.valueOf(mCycle));
+                addBill(mETBillName.getText().toString(), mBillStatus, Integer.parseInt(mETbillPrize.getText().toString()),mDate, String.valueOf(mCycle), mDateTime);
                 startAllFragmentAfrerAdd();
             }
         });
@@ -95,8 +96,9 @@ public class AddBillFragment extends BaseFragment implements AddBillContract.Vie
         mCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-
-                mDate = String.valueOf(dayOfMonth + " / " + month + " / " + year);
+                month = month+1;
+                mDate = String.valueOf(dayOfMonth + "-" + month + "-" + year);
+                mDateTime = new Date(dayOfMonth,month,year).getTime();
             }
         });
 
@@ -167,8 +169,8 @@ public class AddBillFragment extends BaseFragment implements AddBillContract.Vie
         mCalendar = getView().findViewById(R.id.calendarView);
     }
 
-    private void addBill(String billName, String billStatus, int billPrize, String billDate, String cycle) {
-        mPresenter.addNewBill(billName, billStatus, billPrize, billDate, cycle);
+    private void addBill(String billName, String billStatus, int billPrize, String billDate, String cycle, Long dateTime) {
+        mPresenter.addNewBill(billName, billStatus, billPrize, billDate, cycle, dateTime);
         Log.e("xd", "cycle: " + cycle);
     }
 

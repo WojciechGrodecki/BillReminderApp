@@ -51,12 +51,7 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        createNotificationChannel();
-        getBillData();
-        Log.e(TAG, "onCreate");
 
-        LongOperation lo = new LongOperation(this);
-        lo.execute("UnPaid Bill !");
 
     }
     private void getBillData(){
@@ -76,6 +71,16 @@ public class MainActivity extends BaseActivity implements MainActivityContract.V
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+    }
+
+    @Override
+    public void showNotify() {
+        createNotificationChannel();
+        getBillData();
+        Log.e(TAG, "onCreate");
+
+        LongOperation lo = new LongOperation(this);
+        lo.execute("UnPaid Bill !");
     }
 
 

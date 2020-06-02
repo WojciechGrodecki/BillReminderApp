@@ -14,6 +14,7 @@ public abstract class AbstractBill {
     int billPrice;
     String billDate;
     String repeat;
+    Long dateTime;
     //String active;
 
 }

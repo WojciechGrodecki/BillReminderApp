@@ -8,6 +8,6 @@ public interface MainActivityContract {
     }
 
     interface View {
-
+        void showNotify();
     }
 }

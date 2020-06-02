@@ -1,7 +1,6 @@
 package com.example.myapplication.ui.fragments.allBills;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -36,7 +35,7 @@ public class AllBillsFragment extends BaseFragment
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView=inflater.inflate(R.layout.fragment_all_bills,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_all_bills, container, false);
         return rootView;
     }
 
@@ -57,7 +56,7 @@ public class AllBillsFragment extends BaseFragment
         Log.e("xd", "setupRecycler");
     }
 
-     private void initializeTextView() {
+    private void initializeTextView() {
         mTxtvBillName = getView().findViewById(R.id.billNameDetails);
         mTxtvBillStatus = getView().findViewById(R.id.billStatusDetails);
         mTxtvBillPrice = getView().findViewById(R.id.BillPriceDetails);
